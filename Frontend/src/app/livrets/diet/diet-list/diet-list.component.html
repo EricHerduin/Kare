@@ -1,0 +1,39 @@
+<ng-container>
+  <button (click)="onNewDietBook()">Nouveau Livret</button>
+
+  <table class="dietList_table" *ngIf="dietBooks$ | async as dietBooks">
+    <thead class="dietList_array title">
+      <tr class="dietList_array title">
+        <th class="dietList_table-title">N°</th>
+        <th class="dietList_table-title">Nom du Livret</th>
+        <th class="dietList_table-title">Sexe</th>
+        <th class="dietList_table-title">Pathologie</th>
+        <th class="dietList_table-title">En ligne</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="dietList_table-row cursor group"
+        *ngFor="let dietbook of dietBooks; let even = even"
+        (click)="onViewDietBook(dietbook.id)"
+        [ngClass]="{ grey: even, white: !even }"
+      >
+        <td class="dietList_table-cell">
+          {{ dietbook.id }}
+        </td>
+        <td class="dietList_table-cell book-title">
+          {{ dietbook.title }}
+        </td>
+        <td class="dietList_table-cell">
+          {{ dietbook.sexe }}
+        </td>
+        <td class="dietList_table-cell">
+          {{ dietbook.pathology }}
+        </td>
+        <td class="dietList_table-cell">
+          {{ dietbook.online ? "oui" : "" }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>

@@ -1,0 +1,198 @@
+<div *ngIf="mode">
+  <form class="container-form" [formGroup]="dietMealForm">
+    <h2>Détail du Repas</h2>
+    <!--Section choix des repas-->
+    <div class="container">
+      <label class="label-col1" for="repas">Repas</label>
+      <div class="container-input" formControlName="typeMeal">
+        <button
+          *ngFor="let meal of meals"
+          (click)="onClickButtonMeal(meal)"
+          [class.active]="selectedOption == meal"
+          name="buttonMeal"
+        >
+          {{ meal }}
+        </button>
+      </div>
+    </div>
+
+    <!--Section du choix des collation si collation est choisie-->
+    <div
+      class="container collation"
+      [ngClass]="{
+        'fade-in': selectedOption === 'Collation',
+        hidden: selectedOption !== 'Collation'
+      }"
+    >
+      <label class="label-col1" for="repas">collation </label>
+      <mat-radio-group class="mat-radio-button" formControlName="collation">
+        <mat-radio-button value="am">AM</mat-radio-button>
+        <mat-radio-button value="pm1">PM1</mat-radio-button>
+        <mat-radio-button value="pm2">PM2</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <!--Section Semaine-->
+    <div class="container">
+      <label class="label-col1" for="stage">Etape</label>
+      <div class="container-input">
+        <button class="selectButton" (click)="toggleCheckAll()">
+          {{ textCheckAll }}
+        </button>
+        <span *ngFor="let i of getRange(stageNb)">
+          <div class="stageCheckbox">
+            <label for="stage">{{ i }}</label>
+            <input
+              type="checkbox"
+              [name]="'stage' + i"
+              [checked]="selectedStages.includes(i)"
+              (change)="onCheckBoxChange(i, $event)"
+            />
+          </div>
+        </span>
+      </div>
+    </div>
+
+    <!--Section saisie des données-->
+
+    <div *ngIf="!showMeal()" formArrayName="collationList">
+      <button type="button" (click)="addCollation()">
+        Ajouter une collation
+      </button>
+      <div
+        *ngFor="let collationControl of collationListControls; let i = index"
+      >
+        <div class="form-group collationList">
+          <label for="collation{{ i }}">Collation {{ i + 1 }}</label>
+          <input
+            class="collationInput"
+            autofocus
+            type="text"
+            [formControlName]="i"
+            appAutofocus
+          />
+          <button type="button" (click)="removeCollation(i)">-</button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showMeal()">
+      <div class="container">
+        <label class="label-col1" for="meat">Viande</label>
+        <div class="container-input">
+          <input
+            formControlName="meat"
+            class="input-col1"
+            id="meat"
+            type="text"
+          />
+
+          <div class="container">
+            <label class="label-col2" for="meatQuantity">Quantité Viande</label>
+            <input
+              class="input-col2 quantity"
+              id="meatQuantity"
+              type="text"
+              formControlName="meatQuantity"
+            />
+          </div>
+          <p>gr.</p>
+        </div>
+      </div>
+      <div class="container">
+        <label class="label-col1" for="meatList">Liste des viandes</label>
+        <div class="container-input">
+          <input
+            class="input-col3"
+            id="meatList"
+            type="text"
+            formControlName="meatList"
+          />
+        </div>
+      </div>
+      <div class="container">
+        <label class="label-col1" for="sauce">Sauce</label>
+        <div class="container-input">
+          <input
+            class="input-col1 quantity"
+            id="sauce"
+            type="text"
+            formControlName="sauce"
+          />
+
+          <p>CS</p>
+        </div>
+      </div>
+      <div class="container">
+        <label class="label-col1" for="sideDish">Accompagnement</label>
+        <div class="container-input">
+          <input
+            class="input-col1"
+            id="sideDish"
+            type="text"
+            formControlName="sideDish"
+          />
+
+          <label class="label-col2" for="sideDishQuantity">Quantité Acc.</label>
+
+          <input
+            class="input-col2 quantity"
+            id="sideDishQuantity"
+            type="text"
+            formControlName="sideDishQuantity"
+          />
+
+          <p>CS</p>
+        </div>
+      </div>
+      <div class="container">
+        <label class="label-col1" for="sideDishList">Liste des Acc.</label>
+        <div class="container-input">
+          <input
+            class="input-col3"
+            id="sideDishList"
+            type="text"
+            formControlName="sideDishList"
+          />
+        </div>
+      </div>
+      <div class="container">
+        <label class="label-col1" for="drink">Boissons</label>
+        <div class="container-input">
+          <input
+            class="input-col3"
+            id="drink"
+            type="text"
+            formControlName="drink"
+          />
+        </div>
+      </div>
+      <div class="container observation">
+        <label class="label-col1 observation" for="obs">Observation</label>
+        <div class="container-input">
+          <textarea
+            class="input-col3"
+            id="obs"
+            type="text"
+            formControlName="obs"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+    <app-file-upload></app-file-upload>
+
+    <div class="container-buttons">
+      <div class="action-buttons">
+        <button type="submit" (click)="onCancel()">Retour</button>
+      </div>
+      <div class="action-buttons">
+        <button mat-raised-button (click)="openConfirmationDialog()">
+          Supprimer
+        </button>
+      </div>
+      <div class="action-buttons">
+        <button type="submit" (click)="onSubmitForm()">Enregistrer</button>
+      </div>
+    </div>
+  </form>
+</div>

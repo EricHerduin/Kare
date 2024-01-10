@@ -1,0 +1,36 @@
+<div class="app-header">
+  <img
+    *ngIf="(isAuth$ | async) && (userRole$ | async) !== 2"
+    src="../../assets/Logo_Konect.png"
+    class="app-header_logo"
+  />
+  <img
+    *ngIf="(isAuth$ | async) && (userRole$ | async) === 2"
+    src="../../assets/Logo Kare.png"
+    class="app-header_logo"
+  />
+  <div class="app-header_title" *ngIf="isAuth$ | async">
+    <p>{{ textHeader }}</p>
+  </div>
+  <button class="logout_button" *ngIf="isAuth$ | async" (click)="onLogout()">
+    Déconnexion
+  </button>
+  <nav>
+    <div
+      class="right-nav"
+      *ngIf="(isAuth$ | async) && (userRole$ | async) !== 2"
+    >
+      <ul>
+        <li>
+          <a routerLink="dietbooks" routerLinkActive="activeMenu">Diet</a>
+        </li>
+        <li>
+          <a routerLink="recipebooks" routerLinkActive="activeMenu">Recette</a>
+        </li>
+        <li>
+          <a routerLink="sportbooks" routerLinkActive="activeMenu">Sport</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

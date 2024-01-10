@@ -1,0 +1,229 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+}
+.card {
+  min-width: 500px;
+}
+
+p,
+h3 {
+  margin: 0 auto;
+  font-size: 16px;
+}
+.container {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  min-width: 1250px;
+  height: 800px;
+  margin: 0 auto;
+  align-self: center;
+  &-form {
+    position: relative;
+    margin-left: 5px;
+    width: 40%;
+    min-width: 360px;
+  }
+  &-meal {
+    min-width: 55%;
+  }
+}
+.form {
+  display: flex;
+  flex-flow: column;
+  width: 420px;
+  margin-left: 10px;
+}
+.form-card {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height: 100%;
+
+  text-align: left;
+  border: 2px black double;
+  padding: 2px;
+  margin: 0 auto;
+
+  &-item {
+    justify-content: space-between;
+    width: 100%;
+
+    & div {
+      display: flex;
+      height: 40px;
+      & h3 {
+        width: auto;
+        margin-right: 20px;
+      }
+      & p {
+        font-size: 30px;
+        height: 20px;
+      }
+    }
+  }
+
+  &-title {
+    font-size: 30px;
+    font-family: poppins;
+    width: 100%;
+    margin: 10px 0 20px 0;
+    text-align: center;
+  }
+  &-group {
+    width: 60%;
+    display: flex;
+    flex-flow: column;
+    margin: 0 5px 0 5px;
+    &_title {
+      display: flex;
+      justify-content: space-between;
+      & .green {
+        width: 30%;
+        font-size: 20px;
+        text-align: right;
+        color: green;
+        animation: blink 2s 5 alternate;
+      }
+      & .red {
+        width: 30%;
+        font-size: 20px;
+        text-align: right;
+        color: red;
+      }
+    }
+    &_item {
+      display: flex;
+      flex-flow: row;
+      justify-content: flex-start;
+      height: 30px;
+      &:nth-child(2) {
+        margin-bottom: 20px;
+      }
+
+      & h4 {
+        width: 80px;
+        margin: 0 0;
+        margin-right: 30px;
+
+        font-size: 14px;
+        font-weight: 800;
+        line-height: 20px;
+        text-align: left;
+      }
+      & p {
+        margin: 0;
+        font-size: 12px;
+        line-height: 24px;
+        color: grey;
+        text-align: left;
+      }
+      &.number {
+        margin: auto;
+        height: 20px;
+
+        & h4 {
+          min-width: 180px;
+          font-size: 14px;
+          justify-content: flex-start;
+        }
+        & p {
+          border: none;
+          font-size: 10px;
+          margin: 0;
+          text-align: left;
+        }
+      }
+      &.description {
+        height: auto;
+        display: flex;
+        flex-flow: column;
+        margin: 20px 5px 0 5px;
+
+        & h4 {
+          margin: 0;
+          width: 100%;
+          min-width: 180px;
+        }
+        & p {
+          border: 0.5px gray solid;
+          text-align: left;
+          overflow-y: scroll;
+          width: 95%;
+          height: 200px;
+          margin: 0 auto;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  &-item {
+    display: flex;
+    flex-flow: row;
+    height: 30px;
+
+    & h3 {
+      font-size: 16px;
+      width: 30%;
+    }
+    & p {
+      width: auto;
+      height: 40px;
+      font-size: 30px;
+      line-height: 24px;
+      color: grey;
+      text-align: left;
+    }
+    &_etape {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-between;
+      height: 60px;
+    }
+  }
+  &-meal {
+    transition: all 1s;
+  }
+}
+.displayMeal_btn {
+  width: auto;
+  font-size: 10px;
+}
+
+.container-stage {
+  display: flex;
+  justify-content: center;
+  & button {
+    width: 30px;
+  }
+  &_btn {
+    display: flex;
+    justify-content: flex-start;
+  }
+}
+.button-stage {
+  width: 30px;
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+// .row {
+//   display: flex;
+//   justify-content: center;
+// }
+
+// .col {
+//   flex: 1;
+// }

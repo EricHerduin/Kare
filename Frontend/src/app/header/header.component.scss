@@ -1,0 +1,69 @@
+.app-header {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 10px;
+  height: 400px;
+  &_logo {
+    text-align: left;
+    position: relative;
+    width: 250px;
+    top: 30px;
+    left: 30px;
+  }
+  &_title {
+    position: relative;
+    top: 50px;
+    height: 100px;
+    color: white;
+    font-size: 30px;
+    line-height: 100px;
+    background-color: rgb(88, 20, 20);
+  }
+}
+
+ul {
+  display: flex;
+  flex-flow: row;
+}
+li {
+  background-color: white;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  border: none;
+  box-shadow: lightgray 3px 3px 7px;
+  margin-right: 20px;
+  outline: none;
+  font-size: 15px;
+  list-style: none;
+  font-weight: 500;
+  transition: 1s;
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-0.25rem);
+  }
+  &:active {
+    transform: translate(5px, 5px);
+    box-shadow: lightgray 0 0 5px;
+  }
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+nav {
+  position: absolute;
+  top: 150px;
+  right: 100px;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logout_button {
+  position: absolute;
+  top: 50px;
+  width: 100px;
+  right: 100px;
+}

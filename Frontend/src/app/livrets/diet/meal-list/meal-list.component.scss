@@ -1,0 +1,12 @@
+.mealId {
+  cursor: pointer;
+}
+
+.container_mealList {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+.mealList_card .mealId {
+  width : 30px;
+}

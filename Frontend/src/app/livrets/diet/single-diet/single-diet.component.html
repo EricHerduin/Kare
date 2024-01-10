@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="container-form">
+    <div class="card" *ngIf="dietbook$ | async as dietBook">
+      <div class="form-card-item">
+        <div>
+          <h3>Livret N°</h3>
+          <p>{{ dietBook.id }}</p>
+        </div>
+        <button (click)="onModify()">modifier</button>
+        <button (click)="onAddMeal()">Ajouter un Repas</button>
+      </div>
+      <div class="form-card">
+        <div class="form-card-group_title">
+          <p class="form-card-title">{{ dietBook.title }}</p>
+          <p
+            [ngClass]="{
+              green: dietBook.online === 1,
+              red: dietBook.online !== 1
+            }"
+          >
+            {{ dietBook.online === 1 ? "En Ligne" : "Hors Ligne" }}
+          </p>
+        </div>
+        <div class="form-card-group_item">
+          <div class="form-card-group">
+            <div class="form-card-group_item">
+              <h4>Pathologie</h4>
+              <p>{{ dietBook.pathology }}</p>
+            </div>
+            <div class="form-card-group_item">
+              <h4>Sexe</h4>
+              <p>{{ dietBook.sexe }}</p>
+            </div>
+          </div>
+          <div class="form-card-group">
+            <div class="form-card-group_item number">
+              <h4>Nbre d'étape</h4>
+              <p>{{ dietBook.nbStage }}</p>
+            </div>
+            <div class="form-card-group_item number">
+              <h4>Nbre de semaines/étape</h4>
+              <p>{{ dietBook.nbWeekPerStage }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-card-group_item description">
+          <h4>description du livret</h4>
+          <p>{{ dietBook.description }}</p>
+        </div>
+
+        <app-array-dietmeal></app-array-dietmeal>
+      </div>
+    </div>
+  </div>
+  <div class="container-meal">
+    <app-mealform
+      *ngIf="mealId !== undefined"
+      (closeMealForm)="onCloseMealFormClicked()"
+    ></app-mealform>
+    <!--problème à régler : ne pas charger si mealId est undefined-->
+  </div>
+</div>

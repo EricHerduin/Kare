@@ -1,0 +1,11 @@
+<p *ngIf="viewTitle">liste des meals :</p>
+<div class="container_mealList">
+  <div class="mealList_card" *ngFor="let mealId of mealIds">
+    <p class="mealId" (click)="onViewMealForm(mealId)">{{mealId}}</p>
+  </div>
+  <div class="container_meal">
+    <div class="mealCard" *ngFor="let meal of meals">
+      <p>{{meal.typeMeal}}</p>
+    </div>
+  </div>
+</div>

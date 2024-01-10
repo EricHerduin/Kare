@@ -1,0 +1,39 @@
+<div *ngIf="dietbook">
+  <table>
+    <tr>
+      <th class="title stage-col col1">Étape</th>
+      <th class="title stage-col col2">Repas</th>
+    </tr>
+    <tr *ngFor="let stage of getRange(dietbook.nbStage)">
+      <td class="stage-col col1">{{ stage }}</td>
+      <td class="col2">
+        <ng-container *ngFor="let mealName of mealOrder; let i = index">
+          <ng-container
+            *ngIf="checkMealExists(stage, mealName); else emptySpace"
+          >
+            <span *ngFor="let meal of dietMealsByStage[stage]">
+              <button
+                class="displayMeal_btn"
+                (click)="onViewMealForm(meal.id)"
+                [class.active]="activeButtonMeal === meal.id"
+                *ngIf="getMealSortName(meal) === mealName"
+                [style.width]="getButtonWidth(i)"
+                [style.min-width]="getButtonMinWidth(i)"
+              >
+                {{
+                  getMealSortName(meal) === "Collation am"
+                    ? "Collation"
+                    : getMealSortName(meal)
+                }}
+              </button>
+            </span>
+          </ng-container>
+          <ng-template #emptySpace>
+            <!-- Espace vide -->
+            <span class="empty-space" [style.width]="getButtonWidth(i)"></span>
+          </ng-template>
+        </ng-container>
+      </td>
+    </tr>
+  </table>
+</div>

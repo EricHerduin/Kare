@@ -1,0 +1,34 @@
+.border {
+  border: 1px solid black;
+}
+.col {
+  display: flex;
+  flex-flow: column;
+  width: 75%;
+  align-items: center;
+
+  &3 {
+    width: 80%;
+    height: auto;
+    min-height: 75px;
+    justify-content: center;
+  }
+  &1 {
+    width: 25%;
+    height: auto;
+  }
+}
+button {
+  width: auto;
+}
+.row {
+  &_entire {
+    display: flex;
+    flex-flow: row;
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+label {
+  margin-right: 15px;
+}

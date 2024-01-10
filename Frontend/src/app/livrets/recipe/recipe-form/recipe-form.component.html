@@ -1,0 +1,45 @@
+<h6>{{ this.mode }}</h6>
+<form *ngIf="recipeForm" [formGroup]="recipeForm">
+  <div class="row_entire">
+    <div class="border col">
+      <div class="border col3">
+        <div class="form-group">
+          <label for="title">Titre</label>
+          <input id="title" type="text" formControlName="title" />
+        </div>
+      </div>
+      <div class="border col3">
+        <div formArrayName="ingredients">
+          <button type="button" (click)="addIngredient()">
+            Ajouter un ingrédient
+          </button>
+          <div
+            *ngFor="
+              let ingredientControl of ingredientListControls;
+              let i = index
+            "
+          >
+            <div class="form-group ingredients">
+              <label for="ingredient{{ i }}">Ingredient {{ i + 1 }}</label>
+              <input
+                class="ingredientInput"
+                autofocus
+                type="text"
+                [formControlName]="i"
+                appAutofocus
+              />
+              <button type="button" (click)="removeIngredient(i)">-</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border col3"></div>
+      <div class="border col3"></div>
+      <div class="border col3"></div>
+    </div>
+    <div class="border col1"></div>
+  </div>
+  <div class="action-buttons">
+    <button type="submit" (click)="onSubmitForm()">Enregistrer</button>
+  </div>
+</form>

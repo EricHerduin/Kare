@@ -1,0 +1,60 @@
+<!-- <ng-container>
+  <button (click)="onNewRecipe()">Nouvelle Recette</button>
+  <div class="recipe_array title">
+    <p class="recipe_array-title">N°</p>
+    <p class="recipe_array-title">Nom de la recette</p>
+    <p class="recipe_array-title">Livret</p>
+  </div>
+  <div class="recipe_array" *ngIf="recipes$ | async as recipes">
+    <div
+      class="recipe_array list"
+      *ngFor="let recipe of recipes; let even = even"
+    >
+      <div
+        class="recipe_array cards cursor group"
+        [ngClass]="{ white: even }"
+        (click)="onViewRecipe(recipe.id)"
+      >
+        <p class="recipe_array-card--id cardwidth">{{ recipe.id }}</p>
+        <p class="recipe_array-card--title cardwidth">{{ recipe.title }}</p>
+        <p class="recipe_array-card--title cardwidth">{{ recipe.livret }}</p>
+      </div>
+    </div>
+  </div>
+</ng-container> -->
+
+<ng-container>
+  <button (click)="onNewRecipe()">Nouvelle Recette</button>
+
+  <table class="dietList_table" *ngIf="recipes$ | async as recipes">
+    <thead class="dietList_array title">
+      <tr class="dietList_array title">
+        <th class="dietList_table-title">N°</th>
+        <th class="dietList_table-title">Nom de la recette</th>
+        <th class="dietList_table-title">Livret</th>
+        <th class="dietList_table-title">En ligne</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="dietList_table-row cursor group"
+        *ngFor="let recipe of recipes; let even = even"
+        (click)="onViewRecipe(recipe.id)"
+        [ngClass]="{ grey: even, white: !even }"
+      >
+        <td class="dietList_table-cell">
+          {{ recipe.id }}
+        </td>
+        <td class="dietList_table-cell book-title">
+          {{ recipe.title }}
+        </td>
+        <td class="dietList_table-cell">
+          {{ recipe.dietbookIds }}
+        </td>
+        <td class="dietList_table-cell">
+          {{ recipe.online ? "En Ligne" : "" }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>

@@ -1,0 +1,88 @@
+<div class="form-card">
+  <h2 *ngIf="this.mode === 'new'">Nouveau Livret</h2>
+  <h2 *ngIf="this.mode === 'edit'">Modification du livret</h2>
+  <form *ngIf="dietBookForm" [formGroup]="dietBookForm">
+    <div class="form-group-1">
+      <label for="id">Numéro du livret</label>
+      <input id="id" type="number" formControlName="id" />
+    </div>
+    <div class="form-group">
+      <label for="title">Titre</label>
+      <input id="title" type="text" formControlName="title" />
+    </div>
+    <div class="form-group">
+      <label for="pathology">Pathologie</label>
+      <p *ngIf="!selectedPathology">sélectionnez une pathologie</p>
+      <select
+        name="pathology"
+        id="pathology"
+        [(ngModel)]="selectedPathology"
+        formControlName="pathology"
+      >
+        <option
+          *ngFor="let pathology of myPathologies"
+          [value]="pathology.name"
+        >
+          {{ pathology.name }}
+        </option>
+      </select>
+      <!-- <input id="pathology" type="text" formControlName="pathology" /> -->
+    </div>
+    <div class="form-group">
+      <label for="sexe">Sexe</label>
+      <mat-radio-group class="mat-radio-button" formControlName="sexe">
+        <mat-radio-button
+          value="homme"
+          [disabled]="
+            selectedPathology === 'Femme enceinte' ||
+            selectedPathology === 'Ménopause'
+          "
+          >Homme</mat-radio-button
+        >
+        <mat-radio-button value="femme">Femme</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="form-group">
+      <label for="nbStage">Nombre d'étape</label>
+      <input id="nbStage" type="number" formControlName="nbStage" />
+    </div>
+    <div class="form-group">
+      <label for="nbWeekPerStage">Nombre de Semaine par étape</label>
+      <input
+        id="nbWeekPerStage"
+        type="number"
+        formControlName="nbWeekPerStage"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        type="text"
+        formControlName="description"
+        rows="4"
+      >
+      </textarea>
+    </div>
+    <div class="form-group">
+      <label for="online"></label>
+      <mat-slide-toggle formControlName="online">En Ligne</mat-slide-toggle>
+    </div>
+  </form>
+  <div class="action-buttons">
+    <button
+      *ngIf="this.buttonCreate"
+      mat-raised-button
+      (click)="onSubmitForm()"
+    >
+      Créer
+    </button>
+    <button
+      *ngIf="!this.buttonCreate"
+      mat-raised-button
+      (click)="openConfirmationDialog()"
+    >
+      Valider
+    </button>
+  </div>
+</div>

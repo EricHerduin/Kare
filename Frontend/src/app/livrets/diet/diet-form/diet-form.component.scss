@@ -1,0 +1,49 @@
+.form-card {
+  box-sizing: border-box;
+
+  width: 90%;
+  margin: 20px auto;
+  margin-top: 0;
+  padding: 10px 30px;
+  box-shadow: lightgray 4px 4px 20px;
+}
+
+.form-group {
+  margin: 10px auto;
+  width: 90%;
+  display: flex;
+
+  justify-content: space-between;
+  &-1 {
+    visibility: hidden;
+  }
+}
+
+input,
+textarea,
+.mat-radio-button,
+.mat-slide-toggle {
+  width: 60%;
+}
+.mat-radio-button {
+  justify-content: flex-start;
+}
+
+input {
+  height: 30px;
+}
+
+.action-buttons {
+  width: 100%;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+}
+.custom-dialog-container {
+  white-space: pre-line;
+  & button {
+    width: auto;
+  }
+}
